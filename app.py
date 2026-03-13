@@ -312,6 +312,10 @@ with tab4:
 
     if st.button("Estimer mes frais", use_container_width=True):
         prediction = model.predict(input_df)[0]
-        st.success(
-            f"Estimation des frais médicaux annuels : {prediction:.2f} €"
-        )
+        prediction_mensuelle = prediction / 12
+
+        st.success("Estimation réalisée avec succès.")
+
+        col1, col2 = st.columns(2)
+        col1.metric("Frais médicaux annuels estimés", f"{prediction:.2f} €")
+        col2.metric("Frais médicaux mensuels estimés", f"{prediction_mensuelle:.2f} €")
