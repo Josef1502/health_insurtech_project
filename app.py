@@ -114,18 +114,7 @@ with tab1:
     col2.metric("Nombre de colonnes", df.shape[1])
 
     st.write("### Types de colonnes")
-
     dtypes_df = pd.DataFrame(df.dtypes, columns=["Type"])
-    dtypes_df = dtypes_df.reset_index()
-    dtypes_df = dtypes_df.rename(columns={"index": "Colonne"})
-
-    # Ajouter colonne donnée sensible
-    from model_utils import SENSITIVE_COLUMNS
-
-    dtypes_df["Donnée sensible"] = dtypes_df["Colonne"].apply(
-        lambda x: "Oui" if x in SENSITIVE_COLUMNS else "Non"
-    )
-
     st.dataframe(dtypes_df, use_container_width=True)
 
 
